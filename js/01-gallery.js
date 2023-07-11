@@ -26,12 +26,9 @@ galleryElem.addEventListener('click', delegation);
 
 function delegation(event) {
   event.preventDefault();
-  
   if (event.target.tagName === 'IMG') {
     const origPic = event.target.dataset.source;
-    console.log(origPic);
 
-      
     const instance = basicLightbox.create(`
       <img src="${origPic}" width="800" height="600">`,  
     {
@@ -52,11 +49,6 @@ function delegation(event) {
         });
       };
     };
-
- 
-
-
-
   };
 };
 
