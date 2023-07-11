@@ -33,28 +33,29 @@ function delegation(event) {
 
       
     const instance = basicLightbox.create(`
-    <img src="${origPic}" width="800" height="600">
-`);
+      <img src="${origPic}" width="800" height="600">`,  
+    {
+      onShow: (instance) => {
+        window.addEventListener('keydown', keyCloseLitebox);
+      },
+      onClose: (instance) => {
+        window.removeEventListener('keydown', keyCloseLitebox);
+        console.log("Слухача було видалено!") 
+      },
+    });
     instance.show()
 
-    document.addEventListener('keydown', keyCloseLitebox); 
-
-    // document.addEventListener('keydown', keyCloseLitebox, {once: true});
-
-    // Чи вірно я розумію? 
-    //    1) слухач додається цим розгалуженням (if)  
-    //    2) тоді якщо слухачу додати опцію  {once: true} то після першого виконання  слухач буде видалений ?
-    //    3) Дякую за відповідь!  
-
     function keyCloseLitebox(event) {
-      // console.log(event);
+      console.log(event);
       if (event.code === 'Escape') {
         instance.close(() => {
-          document.removeEventListener('keydown', keyCloseLitebox); 
-          console.log('Cлухача було видалено');
-        } );
+        });
       };
     };
+
+ 
+
+
 
   };
 };
